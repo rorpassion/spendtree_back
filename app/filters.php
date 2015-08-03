@@ -22,7 +22,10 @@ App::before(function($request)
 
 App::after(function($request, $response)
 {
-	//
+	$response->header('Access-Control-Allow-Origin', '*');
+    $response->header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    $response->header('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept, Authorization, X-Request-With');
+    $response->header('Access-Control-Allow-Credentials', true);
 });
 
 /*
@@ -90,4 +93,12 @@ Route::filter('csrf', function()
 	{
 		throw new Illuminate\Session\TokenMismatchException;
 	}
+});
+
+Route::filter('allowOrigin', function($route, $request, $response)
+{
+    $response->headers->all('Access-Control-Allow-Origin', '*');
+    $response->headers->all('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    $response->headers->all('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept, Client, Authorization');
+    $response->headers->set('Access-Control-Allow-Credentials', 'true');
 });
