@@ -13,6 +13,13 @@
 
 Route::group(['prefix' => 'api/v1'], function() {
     Route::post('/users/authenticate', 'UserController@authenticate');
+
+    // Client API
+    Route::get('/clients', 'ClientController@index');
+    Route::get('/clients/{id}/list', 'ClientController@indexByUser');
+    Route::get('/clients/{id}', 'ClientController@show');
+    Route::put('/clients/{id}', 'ClientController@update');
+    Route::post('/clients', 'ClientController@create');
 });
 
 Route::get('/', function()

@@ -22,4 +22,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 * @var array
 	 */
 	protected $hidden = array('password');
+    
+    /**
+     * One User can have many clients
+     */
+    public function clients()
+    {
+        return $this->hasMany("Client");
+    }
 }
