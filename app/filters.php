@@ -13,19 +13,19 @@
 
 App::before(function($request)
 {
-	header('Access-Control-Allow-Origin: *');
-    header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
-    header('Access-Control-Allow-Headers: Origin, Content-Type, Accept, Authorization, X-Request-With');
-    header('Access-Control-Allow-Credentials: true');
+	//header('Access-Control-Allow-Origin: *');
+//    header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+//    header('Access-Control-Allow-Headers: Origin, Content-Type, Accept, Authorization, X-Request-With');
+//    header('Access-Control-Allow-Credentials: true');
 });
 
 
 App::after(function($request, $response)
 {
-	$response->header('Access-Control-Allow-Origin', '*');
-    $response->header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-    $response->header('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept, Authorization, X-Request-With');
-    $response->header('Access-Control-Allow-Credentials', true);
+	//$response->header('Access-Control-Allow-Origin', '*');
+//    $response->header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+//    $response->header('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept, Authorization, X-Request-With');
+//    $response->header('Access-Control-Allow-Credentials', true);
 });
 
 /*
