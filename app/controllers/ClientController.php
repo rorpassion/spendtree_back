@@ -66,9 +66,24 @@ class ClientController extends BaseController {
     /**
     * Update client details
     */
-    public function update()
+    public function update($client_id)
     {
+        $validator = Validator::make($data = Input::all(), Client::$rules);
+
+        if ($validator->fails())
+        {
+            return Response::json($validator->messages(), 400);
+        }
         
+        try
+        {
+            Client::find($client_id)->update(Input::all());
+            return Response::json("success", 200);
+        }
+        catch (Exception $e)
+        {
+            return Response::json("failure", 400);
+        }
     }
 }  
 ?>
