@@ -20,6 +20,12 @@ Route::group(['prefix' => 'api/v1'], function() {
     Route::get('/clients/{id}', 'ClientController@show');
     Route::put('/clients/{id}', 'ClientController@update');
     Route::post('/clients', 'ClientController@create');
+    
+    // Property API
+    Route::get('/properties/{user_id}', 'PropertyController@index');
+    Route::get('/properties/{user_id}/{id}', 'PropertyController@show');
+    Route::put('/properties/{user_id}/{id}', 'PropertyController@update');
+    Route::post('/properties/{user_id}', 'PropertyController@create');
 });
 
 Route::get('/', function()

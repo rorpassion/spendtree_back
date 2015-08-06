@@ -21,12 +21,9 @@ class Client extends Eloquent implements UserInterface, RemindableInterface {
     * Validation Rule
     */
     public static $rules = array(
-        'user_id'       => 'required',
-        'name'          => 'required',
-        'email'         => 'required',
-        'phone'         => 'required',
-        'billing_address' => 'required',
-        'mailing_address' => 'required'
+        'user_id'   => 'required',
+        'name'      => 'required',
+        'email'     => 'required'
     );
 
   
@@ -36,5 +33,14 @@ class Client extends Eloquent implements UserInterface, RemindableInterface {
     public function user()
     {
         return $this->belongsTo("User");
+    }
+    
+    /**
+    * One Client can have many properties
+    * 
+    */
+    public function properties()
+    {
+        return $this->hasMany("Property");
     }
 }
