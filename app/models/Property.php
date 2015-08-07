@@ -17,6 +17,7 @@ class Property extends Eloquent implements UserInterface, RemindableInterface {
     protected $table = 'properties';
     protected $fillable = array(
         'user_id', 'client_id', 'address', 'type', 'phone', 'total_units', 'reserve_amount', 'fee_type', 'fee_amount');
+    protected $with = array('client');
     
     /**
     * Validation Rule
