@@ -50,7 +50,7 @@ class PropertyController extends BaseController {
             return Response::json('Property does not exist', 400);
         }
         
-        return Response::json($property->toArray(), 200);
+        return Response::json(['property' => $property->toArray()], 200);
     }
     
     /**
@@ -68,13 +68,14 @@ class PropertyController extends BaseController {
         try
         {
             $property = Property::find($id)->update(Input::all());
+            $properties = Property::where('user_id', $user_id)->get();
         }
         catch (Exception $e)
         {
             return Response::json("failure", 400);
         }
         
-        return Response::json($property->toArray(), 200);
+        return Response::json($properties->toArray(), 200);
     }
 }  
 ?>
