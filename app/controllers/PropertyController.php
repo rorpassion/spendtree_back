@@ -26,7 +26,7 @@ class PropertyController extends BaseController {
                 $s3 = AWS::get('s3');
                 $photo_uploaded = $s3->putObject(array(
                     'Bucket'     => 'spendtree',
-                    'Key'        => 'o3qXY+KF7MLIu/HJIeBpSjMsXyZensRbjnvfpEb0',
+                    'Key'        => '',
                     'Body'       => Input::file('photo')
                 ));
                 $data['photo'] = $photo_uploaded['ObjectURL'];
@@ -38,7 +38,7 @@ class PropertyController extends BaseController {
                 $s3 = AWS::get('s3');
                 $doc_uploaded = $s3->putObject(array(
                     'Bucket'     => 'spendtree',
-                    'Key'        => 'o3qXY+KF7MLIu/HJIeBpSjMsXyZensRbjnvfpEb0',
+                    'Key'        => '',
                     'Body'       => Input::file('doc')
                 ));
                 $data['doc'] = $doc_uploaded['ObjectURL'];
