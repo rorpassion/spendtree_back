@@ -22,6 +22,8 @@ class CreatePropertiesTable extends Migration {
             $table->decimal('reserve_amount');
             $table->string('fee_type');
             $table->decimal('fee_amount');
+            $table->string('photo');
+            $table->string('doc');
             
             $table->timestamps();
         });

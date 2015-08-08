@@ -1,5 +1,6 @@
 <?php
 
+use Aws\S3\S3Client;
 /*
 * Manage Property for API endpoints
 */
@@ -17,15 +18,40 @@ class PropertyController extends BaseController {
             return Response::json($validator->messages(), 400);
         }
         
-        try 
+        try
         {
+            if (Input::hasFile('photo') && Input::file('photo')->isValid())
+            {
+                // Upload file to AWS S3 bucket
+                $s3 = AWS::get('s3');
+                $photo_uploaded = $s3->putObject(array(
+                    'Bucket'     => 'spendtree',
+                    'Key'        => 'o3qXY+KF7MLIu/HJIeBpSjMsXyZensRbjnvfpEb0',
+                    'Body'       => Input::file('photo')
+                ));
+                $data['photo'] = $photo_uploaded['ObjectURL'];
+            }
+            
+            if (Input::hasFile('doc') && Input::file('doc')->isValid())
+            {
+                // Upload file to AWS S3 bucket
+                $s3 = AWS::get('s3');
+                $doc_uploaded = $s3->putObject(array(
+                    'Bucket'     => 'spendtree',
+                    'Key'        => 'o3qXY+KF7MLIu/HJIeBpSjMsXyZensRbjnvfpEb0',
+                    'Body'       => Input::file('doc')
+                ));
+                $data['doc'] = $doc_uploaded['ObjectURL'];
+            }
+            
             $property = Property::create($data);
+            $properties = Property::where('user_id', $user_id)->get();
         }
         catch (Exception $e)
         {
             return Response::json("failure", 400);   
         }
-        return Response::json($property->toArray(), 200);
+        return Response::json(['property' => $property->toArray(), 'properties' => $properties->toArray()], 200);
     }
     
     /**

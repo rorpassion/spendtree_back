@@ -26,6 +26,12 @@ Route::group(['prefix' => 'api/v1'], function() {
     Route::get('/properties/{user_id}/{id}', 'PropertyController@show');
     Route::put('/properties/{user_id}/{id}', 'PropertyController@update');
     Route::post('/properties/{user_id}', 'PropertyController@create');
+    
+    // Unit API
+    Route::get('/units/{property_id}', 'UnitController@index');
+    Route::get('/units/{property_id}/{id}', 'UnitController@show');
+    Route::put('/units/{id}', 'UnitController@update');
+    Route::post('/units', 'UnitController@create');
 });
 
 Route::get('/', function()
